@@ -30,16 +30,6 @@ public class ProductController {
         return ResponseEntity.ok(new BaseResponse<>(productService.addProduct(productRequest.getProductDTO())));
     }
 
-    @PostMapping(value = "/add-quantity", produces = MediaType.APPLICATION_JSON)
-    public ResponseEntity<BaseResponse<ProductDTO>> addQuantity(@RequestBody ProductRequest productRequest) {
-        return ResponseEntity.ok(new BaseResponse<>(productService.addQuantity(productRequest.getProductDTO())));
-    }
-
-    @PostMapping(value = "/subtract-quantity", produces = MediaType.APPLICATION_JSON)
-    public ResponseEntity<BaseResponse<ProductDTO>> subtractQuantity(@RequestBody ProductRequest productRequest) {
-        return ResponseEntity.ok(new BaseResponse<>(productService.subtractQuantity(productRequest.getProductDTO())));
-    }
-
     @DeleteMapping(value = "/product", produces = MediaType.APPLICATION_JSON)
     public void deleteProduct(Long productId) {
 

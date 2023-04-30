@@ -1,27 +1,25 @@
 package com.bewell.inventory.mapper;
 
-import com.bewell.inventory.dto.ProductDTO;
-import com.bewell.inventory.entity.Category;
-import com.bewell.inventory.entity.Product;
+import com.bewell.inventory.dto.ProductWarehouseDTO;
+import com.bewell.inventory.entity.ProductWarehouse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
-public interface ProductMapper {
-    ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
+public interface ProductWarehouseMapper {
+    ProductWarehouseMapper INSTANCE = Mappers.getMapper(ProductWarehouseMapper.class);
 
-    @Mapping(target = "categoryId", source = "category.categoryId")
+    @Mapping(target = "productId", source = "product.productId")
     @Mapping(target = "warehouseId", source = "warehouse.warehouseId")
-    ProductDTO entityToDTO(Product product);
+    ProductWarehouseDTO entityToDTO(ProductWarehouse productWarehouse);
 
     /*@Mapping(target = "category.categoryId", source = "categoryId")
     @Mapping(target = "warehouse.warehouseId", source = "warehouseId")
     Product dtoToTargetEntity(ProductDTO productDTO, @MappingTarget Product product);*/
 
-    @Mapping(target = "category.categoryId", source = "categoryId")
+    @Mapping(target = "product.productId", source = "productId")
     @Mapping(target = "warehouse.warehouseId", source = "warehouseId")
-    Product dtoToEntity(ProductDTO productDTO);
+    ProductWarehouse dtoToEntity(ProductWarehouseDTO productWarehouseDTO);
 
 }
