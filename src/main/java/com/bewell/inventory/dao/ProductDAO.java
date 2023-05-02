@@ -3,7 +3,9 @@ package com.bewell.inventory.dao;
 import com.bewell.inventory.dto.ProductDTO;
 import com.bewell.inventory.dto.ProductWarehouseDTO;
 import com.bewell.inventory.entity.Product;
+import com.bewell.inventory.entity.ProductWarehouse;
 import com.bewell.inventory.mapper.ProductMapper;
+import com.bewell.inventory.mapper.ProductWarehouseMapper;
 import com.bewell.inventory.repository.ProductRepository;
 import com.bewell.inventory.notification.email.EmailDetail;
 import com.bewell.inventory.notification.email.EmailService;
@@ -30,11 +32,17 @@ public class ProductDAO {
     }
 
     public ProductDTO addProduct(ProductDTO productDTO) {
-        Product product = null;
-        if (Objects.nonNull(productDTO.getProductId())){
-            product = productRepository.findById(productDTO.getProductId()).get();
-        }
-        product = ProductMapper.INSTANCE.dtoToEntity(productDTO);
+        Product product = ProductMapper.INSTANCE.dtoToEntity(productDTO);
         return ProductMapper.INSTANCE.entityToDTO(productRepository.save(product));
+    }
+
+    public ProductDTO updateProduct(ProductDTO productDTO){
+        Product product = productRepository.findById(productDTO.getProductId()).get();
+        product = ProductMapper.INSTANCE.dtoToTargetEntity(productDTO, product);
+        return ProductMapper.INSTANCE.entityToDTO(productRepository.save(product));
+    }
+
+    public void delete(Long productId) {
+        productRepository.delete(productRepository.getOne(productId));
     }
 }

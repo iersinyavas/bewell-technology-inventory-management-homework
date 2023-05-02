@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -17,13 +18,16 @@ public class History implements Serializable {
     @SequenceGenerator(name = "history_gen", sequenceName = "inventory_management.history_seq", allocationSize = 1)
     private Long historyId;
 
-    @Column(name = "operationStatusCode")
+    @Column(name = "operation_status_code")
     private String operationStatusCode;
 
     @Column(name = "transaction_date")
     private LocalDateTime transactionDate;
 
-    @ManyToOne
-    @JoinColumn(name = "product", referencedColumnName = "product_id")
-    private Product product;
+    @Column(name = "transaction_quantity")
+    private BigDecimal transactionQuantity;
+
+    @Column(name = "product_warehouse_id")
+    private Long productWarehouseId;
+
 }

@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 public class ProductWarehouseDTO {
 
     private Long productWarehouseId;
-    private Long productId;
+    private String productName;
     private Long warehouseId;
     private BigDecimal quantity;
     private BigDecimal criticalQuantity;

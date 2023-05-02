@@ -13,9 +13,6 @@ import org.mapstruct.factory.Mappers;
 public interface HistoryMapper {
     HistoryMapper INSTANCE = Mappers.getMapper(HistoryMapper.class);
 
-    @Mapping(target = "productId", source = "product.productId")
     HistoryDTO entityToDTO(History history);
-
-    @Mapping(target = "product.productId", source = "productId")
     History dtoToEntity(HistoryDTO historyDTO);
 }

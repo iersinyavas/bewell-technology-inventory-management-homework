@@ -12,6 +12,6 @@ public interface WarehouseRepository extends JpaRepository<Warehouse, Long> {
 
     Warehouse findByName(String name);
 
-    @Query(value = "select w from warehouse w, product p where w.warehouse_id = p.warehouse_id and p.product_id = :productId", nativeQuery = true)
-    List<Warehouse> productWhichWarehouse(Long pro);
+    @Query(value = "select w from ProductWarehouse pw, Product p, Warehouse w where pw.product.productId = p.productId and pw.warehouseId = w.warehouseId and pw.quantity > 0 and p.name = :productName")
+    List<Warehouse> productWhichWarehouse(String productName);
 }

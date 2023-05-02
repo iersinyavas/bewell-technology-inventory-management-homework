@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 @Data
 @Entity
@@ -17,11 +16,11 @@ public class Product implements Serializable {
     @SequenceGenerator(name = "product_gen", sequenceName = "inventory_management.product_seq", allocationSize = 1)
     private Long productId;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
+    @JoinColumn(name = "category_id", referencedColumnName = "category_id", nullable = false)
     private Category category;
 
 

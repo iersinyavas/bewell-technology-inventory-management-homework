@@ -1,7 +1,9 @@
 package com.bewell.inventory.controller;
 
 import com.bewell.inventory.dto.ProductDTO;
+import com.bewell.inventory.dto.ProductWarehouseDTO;
 import com.bewell.inventory.entity.Product;
+import com.bewell.inventory.request.InventoryRequest;
 import com.bewell.inventory.request.ProductRequest;
 import com.bewell.inventory.response.BaseResponse;
 import com.bewell.inventory.service.ProductService;
@@ -30,9 +32,14 @@ public class ProductController {
         return ResponseEntity.ok(new BaseResponse<>(productService.addProduct(productRequest.getProductDTO())));
     }
 
-    @DeleteMapping(value = "/product", produces = MediaType.APPLICATION_JSON)
-    public void deleteProduct(Long productId) {
+    @PostMapping(value = "/update-product", produces = MediaType.APPLICATION_JSON)
+    public ResponseEntity<BaseResponse<ProductDTO>> updateProduct(@RequestBody ProductRequest productRequest) {
+        return ResponseEntity.ok(new BaseResponse<>(productService.updateProduct(productRequest.getProductDTO())));
+    }
 
+    @DeleteMapping(value = "/{productId}", produces = MediaType.APPLICATION_JSON)
+    public void deleteProduct(@PathVariable Long productId) {
+        productService.deleteProduct(productId);
     }
 
 
